@@ -1,5 +1,6 @@
 package com.gcit.siva.bookmyshow.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import javax.persistence.*;
 import java.sql.Date;
@@ -24,10 +25,12 @@ public class Show{
 
     @ManyToOne()
     @JoinColumn(name = "movie_id")
+    @JsonManagedReference
     private Movie movie;
 
     @ManyToOne
     @JoinColumn(name = "theater_id")
+    @JsonManagedReference
     private Theater theater;
 
 }

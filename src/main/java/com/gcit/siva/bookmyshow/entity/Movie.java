@@ -1,16 +1,12 @@
 package com.gcit.siva.bookmyshow.entity;
 
-import jdk.dynalink.linker.LinkerServices;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Controller;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Data
 @Entity
-@NoArgsConstructor
 public class Movie {
 
     @Id
@@ -22,6 +18,7 @@ public class Movie {
     private String movieName;
 
     @OneToMany(mappedBy = "movie")
+    @JsonBackReference
     private List<Show> shows;
 
 

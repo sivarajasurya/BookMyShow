@@ -1,8 +1,7 @@
 package com.gcit.siva.bookmyshow.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
-import org.springframework.web.bind.annotation.Mapping;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,6 +18,7 @@ public class Theater{
     private String theaterName;
 
     @OneToMany(mappedBy = "theater")
+    @JsonBackReference
     private List<Show> shows;
 
 }

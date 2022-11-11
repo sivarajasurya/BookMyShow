@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface TheaterRepo extends JpaRepository<Theater,Long> {
 
-//    @Query("FROM Theater")
-//    List<Theater> getTheaters ();
+    @Query("FROM Theater"tt9)
+    List<Theater> getTheaters ();
 
 }

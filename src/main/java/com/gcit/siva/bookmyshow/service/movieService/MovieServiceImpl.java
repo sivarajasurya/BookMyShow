@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieServiceImpl implements MovieService{
@@ -21,5 +22,10 @@ public class MovieServiceImpl implements MovieService{
     @Override
     public List<Movie> listMovieNames() {
         return movieRepo.findAll();
+    }
+
+    @Override
+    public Optional<Movie> findMovieById(long id) {
+        return movieRepo.findById(id);
     }
 }

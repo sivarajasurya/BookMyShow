@@ -1,13 +1,16 @@
 package com.gcit.siva.bookmyshow.controller;
 
+import com.gcit.siva.bookmyshow.entity.Movie;
 import com.gcit.siva.bookmyshow.entity.Show;
+import com.gcit.siva.bookmyshow.entity.Theater;
 import com.gcit.siva.bookmyshow.request.ShowRequest;
 import com.gcit.siva.bookmyshow.service.ShowService.ShowService;
+import com.gcit.siva.bookmyshow.service.movieService.MovieService;
+import com.gcit.siva.bookmyshow.service.theaterService.TheaterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 public class ShowController {
@@ -15,22 +18,29 @@ public class ShowController {
     @Autowired
     private ShowService service;
 
+    @Autowired
+    private TheaterService theaterService;
+
+    @Autowired
+    private MovieService movieService;
+
 
     @PostMapping("/saveSeatDetails/{theaterId}/{movieID}")
-    private Show saveSeatDetails(@RequestParam Long theaterId, @RequestParam Long movieID , @RequestBody Show show){
-//      ShowRequest showRequest1 = new ShowRequest();
-        Show showRequest1 = new Show();
-//        showRequest1.set
-        showRequest1.setTheaterId(movieID);
-        showRequest1.setMovieId(movieID);
-
-        showRequest1.setTotalSeat(showRequest.getTotalSeat());
-        showRequest1.setBookedSeat(showRequest.getBookedSeat());
-        showRequest1.setDate(showRequest.getDate());
+    private Show saveSeatDetails(@PathVariable long theaterId, @PathVariable long movieID , @RequestBody ShowRequest showRequest){
 
         Show show = new Show();
-        show.s
-        return service.saveShow(showRequest1);
+
+        Optional<Theater> theater1 = theaterService.findByID(theaterId);
+
+        Optional<Movie> movie1 = movieService.findMovieById(movieID);
+
+        show.setTheater(theater1.get());
+        show.setMovie(movie1.get());
+        show.setTotalSeat(showRequest.getTotalSeat());
+        show.setBookedSeat(showRequest.getBookedSeat());
+        show.setDate(showRequest.getDate());
+
+        return service.saveShow(show);
     }
 
 

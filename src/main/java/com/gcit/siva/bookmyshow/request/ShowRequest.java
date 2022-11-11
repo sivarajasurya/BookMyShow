@@ -6,13 +6,7 @@ import java.sql.Date;
 @Data
 public class ShowRequest {
 
-    private long movieId;
-
-    private long theaterId;
-
     private Date date;
-
     private int totalSeat;
-
     private int bookedSeat;
 }
