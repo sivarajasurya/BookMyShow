@@ -22,7 +22,7 @@ public class Show{
     @Column(name = "booked_seat")
     private int bookedSeat;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "movie_id")
     private Movie movie;
 

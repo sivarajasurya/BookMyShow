@@ -17,7 +17,7 @@ public class ShowController {
 
 
     @PostMapping("/saveSeatDetails/{theaterId}/{movieID}")
-    private Show saveSeatDetails(@RequestParam Long theaterId, @RequestParam Long movieID , @RequestBody ShowRequest showRequest){
+    private Show saveSeatDetails(@RequestParam Long theaterId, @RequestParam Long movieID , @RequestBody Show show){
 //      ShowRequest showRequest1 = new ShowRequest();
         Show showRequest1 = new Show();
 //        showRequest1.set

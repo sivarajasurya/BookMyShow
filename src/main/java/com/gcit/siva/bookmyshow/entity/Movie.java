@@ -21,7 +21,7 @@ public class Movie {
     @Column(name = "movie_name")
     private String movieName;
 
-    @OneToMany
+    @OneToMany(mappedBy = "movie")
     private List<Show> shows;
 
 

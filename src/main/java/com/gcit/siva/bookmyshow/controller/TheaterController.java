@@ -1,12 +1,10 @@
 package com.gcit.siva.bookmyshow.controller;
 
+import com.gcit.siva.bookmyshow.DTO.TheaterDto;
 import com.gcit.siva.bookmyshow.entity.Theater;
 import com.gcit.siva.bookmyshow.service.theaterService.TheaterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +23,14 @@ public class TheaterController {
     public List<Theater> theaters (){
         return service.listAllTheaterName();
     }
+
+//    @PostMapping("/addTheater")
+//    public TheaterDto saveTheater(@RequestBody TheaterDto theaterDto){
+//        Theater theater = new Theater();
+//        theater.setTheaterName(theaterDto.getTheaterName());
+//        theater.setTheaterId(theater);
+//        service.saveTheaterName(theater);
+//        return theaterDto;
+//    }
 
 }

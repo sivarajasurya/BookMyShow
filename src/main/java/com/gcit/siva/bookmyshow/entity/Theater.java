@@ -1,6 +1,7 @@
 package com.gcit.siva.bookmyshow.entity;
 
 import lombok.Data;
+import org.springframework.web.bind.annotation.Mapping;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,7 +18,7 @@ public class Theater{
     @Column(name = "theater_name")
     private String theaterName;
 
-    @OneToMany
+    @OneToMany(mappedBy = "theater")
     private List<Show> shows;
 
 }
