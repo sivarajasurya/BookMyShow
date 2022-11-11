@@ -11,9 +11,11 @@ public class Theater{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long theater_id;
+    @Column(name = "theater_id")
+    private long theaterId;
 
-    private String theater_name;
+    @Column(name = "theater_name")
+    private String theaterName;
 
     @OneToMany
     private List<Show> shows;

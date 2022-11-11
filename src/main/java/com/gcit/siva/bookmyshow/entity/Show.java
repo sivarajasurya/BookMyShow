@@ -10,13 +10,17 @@ public class Show{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long show_id;
+    @Column(name = "show_id")
+    private long showId;
 
+    @Column(name = "date")
     private Date date;
 
-    private int total_seat;
+    @Column(name = "total_seat")
+    private int totalSeat;
 
-    private int booked_seat;
+    @Column(name = "booked_seat")
+    private int bookedSeat;
 
     @ManyToOne
     @JoinColumn(name = "movie_id")

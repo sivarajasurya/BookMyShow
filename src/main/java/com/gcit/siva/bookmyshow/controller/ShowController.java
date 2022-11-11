@@ -21,11 +21,11 @@ public class ShowController {
 //      ShowRequest showRequest1 = new ShowRequest();
         Show showRequest1 = new Show();
 //        showRequest1.set
-        showRequest1.setTheater_id(movieID);
-        showRequest1.setMovie_id(movieID);
+        showRequest1.setTheaterId(movieID);
+        showRequest1.setMovieId(movieID);
 
-        showRequest1.setTotal_seat(showRequest.getTotal_seat());
-        showRequest1.setBooked_seat(showRequest.getBooked_seat());
+        showRequest1.setTotalSeat(showRequest.getTotalSeat());
+        showRequest1.setBookedSeat(showRequest.getBookedSeat());
         showRequest1.setDate(showRequest.getDate());
 
         Show show = new Show();

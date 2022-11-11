@@ -16,12 +16,12 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @PostMapping("/save-movie-name")
+    @PostMapping("/saveMovieName")
     public Movie saveMovieNames(@RequestBody Movie movie){
         return movieService.saveMovieName(movie);
     }
 
-    @GetMapping("/list-movie-name")
+    @GetMapping("/listMovieName")
     public List<Movie> listMovieNames(){
         return movieService.listMovieNames();
     }

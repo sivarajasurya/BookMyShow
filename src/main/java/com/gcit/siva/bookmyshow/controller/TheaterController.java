@@ -16,12 +16,12 @@ public class TheaterController {
     @Autowired
     private TheaterService service;
 
-    @PostMapping("/add-theater-name")
+    @PostMapping("/addTheaterName")
     public Theater theater (@RequestBody Theater theater){
         return service.saveTheaterName(theater);
     }
 
-    @GetMapping("/show-all-theater-name")
+    @GetMapping("/showAllTheaterName")
     public List<Theater> theaters (){
         return service.listAllTheaterName();
     }
