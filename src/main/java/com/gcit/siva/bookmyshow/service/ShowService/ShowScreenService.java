@@ -14,16 +14,9 @@ public interface ShowScreenService {
 
     ShowScreen saveShow (long theaterID, long movieId, ShowRequest showRequest);
     List<ShowScreen> findAllShowScreen();
-    List<ShowScreen> findAllShowScreenByMovieNames();
     SeatAvailableDto getTicketAvailabilityByScreenId(long id);
     BookSeatForShowResponse bookSeatAvailableForShowScreen(BookSeatForShowRequest showRequest);
     AllMoviesByTheaterNameDto findAllShowScreenByTheaterName(String theaterName);
     List<AllTheaterByMovieNameDto> findAllShowScreenByMovieName(String movieName);
-    //BookSeatForShowDto bookSeatAvailableForShowScreen(String theaterName, String movieName, int numOfTickets);
-
-    List<ShowScreen> findAllTheaterByMovieName(String movieName);
-
-    List<ShowScreen> findAllShowScreenForMovie(String movieName);
-
 
 }

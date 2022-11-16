@@ -17,9 +17,8 @@ public class TheaterController {
 
     @PostMapping("/addTheaterName")
     public Theater theater (@RequestBody TheaterRequest theater){
-        Theater theater1 = new Theater();
-        theater1.setTheaterName(theater.getTheaterName());
-        return theaterService.saveTheaterName(theater1);
+
+        return theaterService.saveTheaterName(theater);
     }
     @GetMapping("/showAllTheaterName")
     public List<Theater> theaters (){

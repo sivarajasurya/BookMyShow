@@ -19,9 +19,7 @@ public class MovieController {
 
     @PostMapping("/saveMovieName")
     public Movie saveMovieNames(@RequestBody MovieRequest movie){
-        Movie movie1 = new Movie();
-        movie1.setMovieName(movie.getMovieName());
-        return movieService.saveMovieName(movie1);
+        return movieService.saveMovieName(movie);
     }
 
     @GetMapping("/listMovieName")

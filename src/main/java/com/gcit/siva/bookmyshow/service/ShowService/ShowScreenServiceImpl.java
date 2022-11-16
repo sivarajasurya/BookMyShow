@@ -36,6 +36,11 @@ public class ShowScreenServiceImpl implements ShowScreenService {
     long num;
 
     @Override
+    public List<ShowScreen> findAllShowScreen() {
+        return showScreenRepo.findAll();
+    }
+
+    @Override
     public ShowScreen saveShow(long theaterId, long movieID, ShowRequest showRequest) {
 
         ShowScreen showScreen = new ShowScreen();
@@ -52,12 +57,6 @@ public class ShowScreenServiceImpl implements ShowScreenService {
     }
 
     @Override
-    public List<ShowScreen> findAllShowScreen() {
-        return showScreenRepo.findAll();
-    }
-
-    @Override
-    //TOTO: Take screen_id as input
     public SeatAvailableDto getTicketAvailabilityByScreenId(long id) {
         SeatAvailableDto seatAvailableDto = new SeatAvailableDto();
 
@@ -95,10 +94,11 @@ public class ShowScreenServiceImpl implements ShowScreenService {
         ticket.setMovieName(showScreen.get().getMovie().getMovieName());
         int availableNum = showScreen.get().getTotalSeat() - showScreen.get().getBookedSeat();
         if (showRequest.getNumOfTicket()<availableNum){
-            int i = showScreen.get().getBookedSeat() - showRequest.getNumOfTicket();
+            int i = showScreen.get().getBookedSeat() + showRequest.getNumOfTicket();
             ticket.setAvailableSeats(availableNum-showRequest.getNumOfTicket());
             ticket.setBookedSeats(showRequest.getNumOfTicket());
             showScreenRepo.decreaseCountOfBookedSeat(i,showId1);
+            ticket.setShowDateAndTiming(showScreen.get().getDate());
             ticket.setStatus("The Ticket has been booked");
         }else {
             ticket.setAvailableSeats(availableNum);
@@ -143,6 +143,7 @@ public class ShowScreenServiceImpl implements ShowScreenService {
         return list;
     }
 
+
     @Override
     public AllMoviesByTheaterNameDto findAllShowScreenByTheaterName(String theaterName) {
 
@@ -176,67 +177,5 @@ public class ShowScreenServiceImpl implements ShowScreenService {
             dto.setMovieName(list1);
         return dto;
     }
-
-
-
-
-//            dto.setMovieName(movieService.findMovieById(k).getMovieName());
-//            for ()
-
-
-
-
-
-
-//    @Override
-//    public BookSeatForShowDto bookSeatAvailableForShowScreen(String theaterName, String movieName, int numOfTickets){
-//
-//        BookSeatForShowDto bookSeatForShowDto  =  new BookSeatForShowDto();
-//
-//        Theater theater = theaterService.findTheaterByTheaterNames(theaterName);
-//        Movie movie = movieService.findMovieByMovieName(movieName);
-//
-//        long theaterId = theater.getTheaterId();
-//        long movieId = movie.getMovieId();
-//
-//        ShowScreen showScreen = showScreenRepo.findShowScreenByTheaterIDAndMovieID(theaterId,movieId);
-//        int total = showScreen.getTotalSeat();
-//        int booked = showScreen.getBookedSeat();
-//        long showId = showScreen.getShowId();
-//
-//        bookSeatForShowDto.setTheaterName(theater.getTheaterName());
-//        bookSeatForShowDto.setMovieName(movie.getMovieName());
-//
-//        if ((total-booked)>0){
-//            bookSeatForShowDto.setAvailableSeats(total-booked);
-//            showScreenRepo.updateBookedSeatInScreenShow(numOfTickets,showId);
-//            bookSeatForShowDto.setStatus("The ticket as been booked ");
-//            return bookSeatForShowDto;
-//        }
-//        bookSeatForShowDto.setAvailableSeats(total-booked);
-//        bookSeatForShowDto.setStatus("The Seat for the movie is not available");
-//        return bookSeatForShowDto;
-//    }
-    @Override
-    public List<ShowScreen> findAllTheaterByMovieName(String movieName) {
-
-        long movieId;
-
-
-
-        return null;
-    }
-
-    @Override
-    public List<ShowScreen> findAllShowScreenForMovie(String movieName) {
-        return null;
-    }
-
-    @Override
-    public List<ShowScreen> findAllShowScreenByMovieNames() {
-//        return showScreenRepo.findAllShowScree();
-        return null;
-    }
-
 
 }

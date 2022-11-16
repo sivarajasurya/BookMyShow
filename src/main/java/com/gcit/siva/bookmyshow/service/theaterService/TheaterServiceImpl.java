@@ -5,6 +5,7 @@ import com.gcit.siva.bookmyshow.entity.ShowScreen;
 import com.gcit.siva.bookmyshow.entity.Theater;
 import com.gcit.siva.bookmyshow.repository.ShowScreenRepo;
 import com.gcit.siva.bookmyshow.repository.TheaterRepo;
+import com.gcit.siva.bookmyshow.request.TheaterRequest;
 import com.gcit.siva.bookmyshow.service.movieService.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,10 @@ public class TheaterServiceImpl implements TheaterService{
     private MovieService movieService;
 
     @Override
-    public Theater saveTheaterName(Theater theater) {
-        return theaterRepo.save(theater);
+    public Theater saveTheaterName(TheaterRequest theater) {
+        Theater theater1 = new Theater();
+        theater1.setTheaterName(theater.getTheaterName());
+        return theaterRepo.save(theater1);
     }
 
     @Override
@@ -50,24 +53,19 @@ public class TheaterServiceImpl implements TheaterService{
 
     @Override
     public List<Theater> findTheaterNameForMovieName(String movieName){
+
         Movie movie = movieService.findMovieByMovieName(movieName);
         long movieID = movie.getMovieId();
-        List<ShowScreen> showScreens = showScreenRepo.findAllShowScreeByMovieID(movieID);
-        long[] theaterIds = new long[showScreens.size()];
-        for (int i = 0; i<showScreens.size();i++){
-            theaterIds[i]=showScreens.get(i).getTheater().getTheaterId();
-        }
+        List<Long> theaterIdByMovieId = showScreenRepo.findTheaterIdByMovieId(movieID);
+
         List<Theater> list = new ArrayList<>();
 
-        for (int i = 0 ; i<showScreens.size(); i++){
-            list.add(this.findByID(theaterIds[i]));
+        for(Long l : theaterIdByMovieId){
+            list.add(this.findByID(l));
         }
         return list;
     }
-    @Override
-    public List<Theater> getAll() {
-        return theaterRepo.findAllTheater();
-    }
+
 
 
 }

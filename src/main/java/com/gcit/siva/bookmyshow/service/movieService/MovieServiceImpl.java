@@ -2,6 +2,7 @@ package com.gcit.siva.bookmyshow.service.movieService;
 
 import com.gcit.siva.bookmyshow.entity.Movie;
 import com.gcit.siva.bookmyshow.repository.MovieRepo;
+import com.gcit.siva.bookmyshow.request.MovieRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,10 @@ public class MovieServiceImpl implements MovieService{
     private MovieRepo movieRepo;
 
     @Override
-    public Movie saveMovieName(Movie movie) {
-        return movieRepo.save(movie);
+    public Movie saveMovieName(MovieRequest movie) {
+        Movie movie1 = new Movie();
+        movie1.setMovieName(movie.getMovieName());
+        return movieRepo.save(movie1);
     }
 
     @Override

@@ -64,6 +64,29 @@ public class ShowScreenController {
     public BookSeatForShowResponse bookSeatForShowScreen( @RequestBody BookSeatForShowRequest bookSeatForShowRequest){
         return service.bookSeatAvailableForShowScreen(bookSeatForShowRequest);
     }
+
+    @GetMapping("/findAllShowScreen")
+    public List<ShowScreen> findAllShowScreen(){
+        return service.findAllShowScreen();
+    }
+
+
+
+
+    //    }
+//     return listDto;
+//     });
+//         listDto.add(screenDto);
+//         screenDto.setDate(s.getDate());
+//         ShowScreenDto screenDto = new ShowScreenDto();
+//     listDto.forEach(s ->{
+//
+//     List<ShowScreenDto> listDto = new ArrayList<>();
+//
+//     List<ShowScreen> list = service.findAllShowScreenByMovieNames();
+//
+//    public List<ShowScreenDto> showScreens (){
+//    @GetMapping("/findShowScreen")
 //    @GetMapping("/bookSeatAvailableForShowScreen/{theaterName}/{movieName}/{numOfTickets}")
 //    public BookSeatForShowDto getShowScreenByTheaterNameAndMovieName(@PathVariable String theaterName, @PathVariable String movieName , @PathVariable int numOfTickets){
 //        return service.bookSeatAvailableForShowScreen(theaterName,movieName,numOfTickets);}
@@ -84,56 +107,5 @@ public class ShowScreenController {
 //        }
 //return null;
 //    }
-
-    @GetMapping("/findAllShowScreen")
-    public List<ShowScreen> findAllShowScreen(){
-        return service.findAllShowScreen();
-    }
-
-    @GetMapping("/findShowScreen")
-    public List<ShowScreenDto> showScreens (){
-
-     List<ShowScreen> list = service.findAllShowScreenByMovieNames();
-
-     List<ShowScreenDto> listDto = new ArrayList<>();
-
-     listDto.forEach(s ->{
-         ShowScreenDto screenDto = new ShowScreenDto();
-         screenDto.setDate(s.getDate());
-         listDto.add(screenDto);
-     });
-     return listDto;
-    }
-    @GetMapping("/findAllShowScreenByMovies")
-    public List<ShowScreenDto> findAllShowScreenByMoviess(){
-
-        List<ShowScreenDto> list = new ArrayList<>();
-        ShowScreenDto obj = new ShowScreenDto();
-
-        List<Theater> theaters = new ArrayList<>();
-        theaters = theaterService.listAllTheaterName();
-        long theaterId = theaters.get(0).getTheaterId();
-
-        List<Movie> movies = new ArrayList<>();
-        movies = movieService.listMovieNames();
-        movies.get(0).getMovieId();
-
-        List<ShowScreen> showScreens = new ArrayList<>();
-        showScreens = service.findAllShowScreen();
-        showScreens.get(0).getTheater().getTheaterId();
-
-        if (theaters.get(0).getTheaterId() == showScreens.get(0).getTheater().getTheaterId()){
-            obj.setShowId(showScreens.get(0).getShowId());
-           // obj.setDate(showScreens.get(0).getDate());
-            obj.setTotalSeat(showScreens.get(0).getTotalSeat());
-            obj.setBookedSeat(showScreens.get(0).getBookedSeat());
-            obj.setMovie(movies.get(0));
-            obj.setTheater(theaters.get(0));
-            list.add(obj);
-        }
-
-        return list;
-    }
-
 
 }
