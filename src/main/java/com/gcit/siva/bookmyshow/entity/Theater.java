@@ -19,6 +19,6 @@ public class Theater{
 
     @OneToMany(mappedBy = "theater")
     @JsonBackReference
-    private List<Show> shows;
+    private List<ShowScreen> showScreens;
 
 }

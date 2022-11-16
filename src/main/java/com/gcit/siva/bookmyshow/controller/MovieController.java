@@ -28,4 +28,6 @@ public class MovieController {
     public List<Movie> listMovieNames(){
         return movieService.listMovieNames();
     }
+
+
 }

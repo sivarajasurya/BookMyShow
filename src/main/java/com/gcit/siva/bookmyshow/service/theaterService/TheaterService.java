@@ -11,7 +11,8 @@ public interface TheaterService {
 
     List<Theater> listAllTheaterName ();
 
-    Optional<Theater> findByID(long id);
-
-
+    Theater findByID(long id);
+    Theater findTheaterByTheaterNames(String theaterName);
+    List<Theater> findTheaterNameForMovieName(String movieName);
+    List<Theater> getAll();
 }

@@ -2,26 +2,29 @@ package com.gcit.siva.bookmyshow.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+
 import javax.persistence.*;
-import java.sql.Date;
+
+import java.time.LocalDateTime;
 
 @Data
 @Entity
-public class Show{
+@Table(name = "show_screen" ,schema = "entertainment")
+public class ShowScreen {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "show_id")
-    private long showId;
+    private Long showId;
 
     @Column(name = "date")
-    private Date date;
+    private LocalDateTime date;
 
     @Column(name = "total_seat")
-    private int totalSeat;
+    private Integer totalSeat;
 
     @Column(name = "booked_seat")
-    private int bookedSeat;
+    private Integer bookedSeat;
 
     @ManyToOne()
     @JoinColumn(name = "movie_id")

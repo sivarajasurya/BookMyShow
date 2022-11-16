@@ -13,31 +13,26 @@ import java.util.Optional;
 public class TheaterController {
 
     @Autowired
-    private TheaterService service;
+    private TheaterService theaterService;
 
     @PostMapping("/addTheaterName")
     public Theater theater (@RequestBody TheaterRequest theater){
         Theater theater1 = new Theater();
         theater1.setTheaterName(theater.getTheaterName());
-        return service.saveTheaterName(theater1);
+        return theaterService.saveTheaterName(theater1);
     }
-
     @GetMapping("/showAllTheaterName")
     public List<Theater> theaters (){
-        return service.listAllTheaterName();
+        return theaterService.listAllTheaterName();
     }
 
-    @GetMapping("/getTheaterById/{id}")
-    public Optional<Theater> getTheaterByIdI(@PathVariable long id){
-        return service.findByID(id);
+    @GetMapping("/findTheaterByTheaterName/{theaterName}")
+    public Theater findTheaterByTheaterName(@PathVariable String theaterName){
+        return theaterService.findTheaterByTheaterNames(theaterName);
     }
-//    @PostMapping("/addTheater")
-//    public TheaterDto saveTheater(@RequestBody TheaterDto theaterDto){
-//        Theater theater = new Theater();
-//        theater.setTheaterName(theaterDto.getTheaterName());
-//        theater.setTheaterId(theater);
-//        service.saveTheaterName(theater);
-//        return theaterDto;
-//    }
+    @GetMapping("/findAllTheaterByMovieName/{movieName}")
+    public List<Theater> findAllTheaterByMovieName(@PathVariable String movieName){
+        return theaterService.findTheaterNameForMovieName(movieName);
+    }
 
 }

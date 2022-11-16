@@ -10,6 +10,7 @@ public interface MovieService {
 
     List<Movie> listMovieNames ();
 
-    Optional<Movie> findMovieById(long id);
+    Movie findMovieById(long id);
 
+    Movie findMovieByMovieName(String movieName);
 }
